@@ -36,6 +36,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
+  config.vm.provision :shell, :inline => "sudo apt-get update"
   config.vm.provision :shell, :inline => "sudo apt-get install -y postgresql-contrib"
+  config.vm.provision :shell, :inline => "git clone https://github.com/olivierverdier/zsh-git-prompt"
+  config.vm.provision :shell, :path => "bootstrap.sh"
 
 end
