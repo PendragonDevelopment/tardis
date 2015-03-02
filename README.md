@@ -7,9 +7,8 @@ Tardis
 
 first run `sh bootstrap.sh`
 
-```
 
-Edit pg_hba.conf to use md5 authentication:
+####Edit pg_hba.conf to use md5 authentication:
 
 ```
 $ cd /etc/postgresql/9.3/main
