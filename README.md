@@ -5,7 +5,7 @@ Tardis
 
 ##Getting Started
 
-first run `sh bootstrap.sh`
+first run `sh bootstrap.sh`.  This part will take a while.
 
 
 ####Edit pg_hba.conf to use md5 authentication:
