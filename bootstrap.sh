@@ -6,3 +6,9 @@ cd "$(rbenv root)"/plugins/ruby-build && git pull
 rbenv install 2.2.0
 
 rbenv global 2.2.0
+
+cd /tardis
+
+gem install bundler
+
+bundle install

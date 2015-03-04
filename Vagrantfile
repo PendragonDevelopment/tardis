@@ -39,6 +39,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "sudo apt-get update"
   config.vm.provision :shell, :inline => "sudo apt-get install -y postgresql-contrib"
   config.vm.provision :shell, :inline => "git clone https://github.com/olivierverdier/zsh-git-prompt"
-  config.vm.provision :shell, :path => "bootstrap.sh"
 
 end
