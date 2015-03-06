@@ -17,7 +17,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
+  gem 'binding_of_caller'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
