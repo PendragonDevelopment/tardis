@@ -10,13 +10,15 @@ Once the provisioning is complete, ssh into the VM: `vagrant ssh`
 Change directory into `/tardis` and run `sh bootstrap.sh`.  This part will take a while.
 
 
-```$ sudo su - postgres
+```
+$ sudo su - postgres
 
 $ createuser -P -s -e vagrant
 Enter password for new role: password
 Enter it again: password
 
-$ exit```
+$ exit
+```
 
 
 ####Edit pg_hba.conf to use md5 authentication:
