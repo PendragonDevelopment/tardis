@@ -1,11 +1,13 @@
 Tardis
 ================
 
-
-
 ##Getting Started
 
-first run `sh bootstrap.sh`.  This part will take a while.
+Run `vagrant up` to initially provision the virtual machine (Vagrant version 1.5.0+ required)
+
+Once the provisioning is complete, ssh into the VM: `vagrant ssh`
+
+Change directory into `/tardis` and run `sh bootstrap.sh`.  This part will take a while.
 
 
 ```$ sudo su - postgres
