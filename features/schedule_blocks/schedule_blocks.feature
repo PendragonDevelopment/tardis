@@ -6,4 +6,4 @@ Feature: Create Schedule Block
   Scenario: ScheduleBlock cannot be created without an AuthorizedApplication
     Given I do not have an authorized application
     When I create a new schedule block
-    Then I see an no authorized application error message
+    Then I see a 'no authorized application' error message

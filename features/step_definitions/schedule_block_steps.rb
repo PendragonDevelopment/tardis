@@ -1,11 +1,11 @@
 Given(/^I do not have an authorized application$/) do
-  # pending # express the regexp above with the code you wish you had
+  User.last.authorized_applications == false
 end
 
 When(/^I create a new schedule block$/) do
-  # pending # express the regexp above with the code you wish you had
+  @schedule_block = User.schedule_blocks.new
 end
 
-Then(/^I see an no authorized application error message$/) do
-  # pending # express the regexp above with the code you wish you had
+Then(/^I see a no authorized application error message$/) do
+  @schedule_block.exists? = false
 end

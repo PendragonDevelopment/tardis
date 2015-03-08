@@ -51,9 +51,9 @@ $ sudo service postgresql restart
 
 `git remote add upstream git@github.com:PendragonDevelopment/tardis.git`
 
-On your local master branch:
+Checkout your local master branch:
 
-`git pull upstream master`
+`C/sites/tardis (master) $ git pull upstream master`
 
 `git checkout my-feature-branch`
 
