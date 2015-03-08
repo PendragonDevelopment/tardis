@@ -8,6 +8,15 @@ Tardis
 first run `sh bootstrap.sh`.  This part will take a while.
 
 
+```$ sudo su - postgres
+
+$ createuser -P -s -e vagrant
+Enter password for new role: password
+Enter it again: password
+
+$ exit```
+
+
 ####Edit pg_hba.conf to use md5 authentication:
 
 ```
