@@ -37,6 +37,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
+    annotate (2.6.6)
+      activerecord (>= 2.3.0)
+      rake (~> 10.4.2, >= 10.4.2)
     arel (6.0.0)
     ast (2.0.0)
     astrolabe (1.3.0)
@@ -109,6 +112,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    doorkeeper (2.1.3)
+      railties (>= 3.2)
     dotenv (1.0.2)
     erubis (2.7.0)
     execjs (2.3.0)
@@ -293,6 +298,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -306,6 +312,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  doorkeeper
   factory_girl_rails
   faker
   foreman
