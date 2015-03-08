@@ -10,11 +10,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "thoughtbot"
+  config.vm.box = "thoughtbot/ubuntu-14-04-server-with-laptop"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://vagrantcloud.com/thoughtbot/ubuntu-14-04-server-with-laptop/version/1/provider/virtualbox.box"
+  config.vm.box_url = "thoughtbot/ubuntu-14-04-server-with-laptop"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -39,6 +39,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "sudo apt-get update"
   config.vm.provision :shell, :inline => "sudo apt-get install -y postgresql-contrib"
   config.vm.provision :shell, :inline => "git clone https://github.com/olivierverdier/zsh-git-prompt"
-  config.vm.provision :shell, :path => "bootstrap.sh"
 
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.1.4'
+ruby '2.2.0'
+gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -17,7 +17,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
+  gem 'binding_of_caller'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
@@ -34,6 +34,7 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'cucumber-rails', :require => false
 end
 group :test do
   gem 'capybara'
