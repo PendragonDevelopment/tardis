@@ -1,11 +1,22 @@
 Tardis
 ================
 
-
-
 ##Getting Started
 
-first run `sh bootstrap.sh`.  This part will take a while.
+Run `vagrant up` to initially provision the virtual machine (Vagrant version 1.5.0+ required)
+
+Once the provisioning is complete, ssh into the VM: `vagrant ssh`
+
+Change directory into `/tardis` and run `sh bootstrap.sh`.  This part will take a while.
+
+
+```$ sudo su - postgres
+
+$ createuser -P -s -e vagrant
+Enter password for new role: password
+Enter it again: password
+
+$ exit```
 
 
 ####Edit pg_hba.conf to use md5 authentication:
@@ -40,9 +51,9 @@ $ sudo service postgresql restart
 
 `git remote add upstream git@github.com:PendragonDevelopment/tardis.git`
 
-On your local master branch:
+Checkout your local master branch:
 
-`git pull upstream master`
+`C/sites/tardis (master) $ git pull upstream master`
 
 `git checkout my-feature-branch`
 
