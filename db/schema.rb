@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312171829) do
+ActiveRecord::Schema.define(version: 20150312174609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "schedule_block_id"  null: false
+    t.integer  "attendee"           null: false
+    t.integer  "status" default: 0, null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "appointments", ["schedule_block_id"], name: "index_appointments_on_schedule_block_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -91,4 +101,5 @@ ActiveRecord::Schema.define(version: 20150312171829) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "appointments", "schedule_blocks"
 end
