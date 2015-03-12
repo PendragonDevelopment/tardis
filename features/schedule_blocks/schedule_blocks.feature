@@ -10,7 +10,7 @@ Feature: CRUD operations for ScheduleBlock
 
   Scenario: Attempt to create a schedule block without being logged in  
     Given I am not logged in
-    When I try to create a ScheduleBlock
+    When I create a valid ScheduleBlock
     Then I see a 'you must be logged in' error message
 
   Scenario:  Schedule block is created when logged in
