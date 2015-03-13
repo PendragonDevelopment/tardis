@@ -1,27 +1,31 @@
 require 'spec_helper'
 
+class ScheduleBlock
+end
+
 describe ScheduleBlock do
+  let(:schedule_block)  { FactoryGirl.create :schedule_block }
 
   describe "#create" do
 
     it "should have a host_id" do 
-      expect(@schedule_block.host_id).to be_true
+      expect(schedule_block.host_id).to eq('1')
     end
 
     it "should have a start time" do 
-      expect(@schedule_block.start_time).to be_true
+      expect(schedule_block.start_time).to eq('9:00')
     end
 
     it "should have an end time" do 
-      expect(@schedule_block.end_time).to be_true
+      expect(schedule_block.end_time).to eq('10:00')
     end
 
-    it "should have a reservation minimum" do
-      expect(@schedule_block.reservation_min).to be_true
+    it "should have a reservation min" do
+      expect(schedule_block.reservation_min).to eq('1')
     end
 
-    it "should have a reservation maximum" do 
-      expect(@schedule_block.reservation_max).to be_true
+    it "should have a reservation max" do 
+      expect(schedule_block.reservation_max).to eq('4')
     end
 
   end
@@ -37,11 +41,16 @@ describe ScheduleBlock do
   describe "#update" do 
 
     it "should save the new parameters in the DB" do
-      expect(@schedule_block[:params]).to eq('?')
+      @schedule_block.update(start_time: '10:00', end_time: "11:00")
+      expect(@schedule_block.reload.start_time).to eql('10:00')
+      expect(@schedule_block.reload.end_time).to eql('11:00')
     end
 
     it "should change all associated appointments" do
-      expect(@scheule_block.appointments).to 
+      @schedule_block.appointments.each do |appointment|
+        appointment.start_time.update_attributes(start_time: '10:00')
+      end
+      expect(@schedule_block.appointments.each.start_time).to eql('10:00')
     end
 
     it "should notify the Doctor of the appropriate status code and updated information" do
