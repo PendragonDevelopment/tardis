@@ -8,24 +8,24 @@ describe ScheduleBlock do
 
   describe "#create" do
 
-    it "should have a host_id" do 
-      expect(schedule_block.host_id).to eq('1')
+    it "should have a hostId" do 
+      expect(schedule_block.hostId).to eq('1')
     end
 
-    it "should have a start time" do 
-      expect(schedule_block.start_time).to eq('9:00')
+    it "should have a startTime" do 
+      expect(schedule_block.startTime).to eq('2015-03-12 13:18:30')
     end
 
-    it "should have an end time" do 
-      expect(schedule_block.end_time).to eq('10:00')
+    it "should have an endTime" do 
+      expect(schedule_block.endTime).to eq('2015-03-12 13:18:30')
     end
 
-    it "should have a reservation min" do
-      expect(schedule_block.reservation_min).to eq('1')
+    it "should have a reservationMin" do
+      expect(schedule_block.reservationMin).to eq('1')
     end
 
-    it "should have a reservation max" do 
-      expect(schedule_block.reservation_max).to eq('4')
+    it "should have a reservationMax" do 
+      expect(schedule_block.reservationMax).to eq('1')
     end
 
   end
