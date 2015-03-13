@@ -17,6 +17,8 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'doorkeeper'
 gem 'annotate'
+gem 'grape'
+gem 'hashie_rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
