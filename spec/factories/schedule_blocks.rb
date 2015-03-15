@@ -5,7 +5,6 @@ FactoryGirl.define do
     location_id 1
     start_time "2015-03-12 13:18:30"
     end_time "2015-03-12 13:18:30"
-    date "2015-03-12"
     reservation_min 1
     reservation_max 1
     status 1
