@@ -1,7 +1,7 @@
-Tardis
+# Tardis
 ================
 
-##Getting Started
+## Getting Started
 
 Run `vagrant up` to initially provision the virtual machine (Vagrant version 1.5.0+ required)
 
@@ -21,7 +21,7 @@ $ exit
 ```
 
 
-####Edit pg_hba.conf to use md5 authentication:
+#### Edit pg_hba.conf to use md5 authentication:
 
 ```
 $ cd /etc/postgresql/9.3/main
