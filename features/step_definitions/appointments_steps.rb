@@ -52,3 +52,15 @@ end
 When(/^I delete a document$/) do
   Appointment.destroy(@appointment.id)
 end
+
+Given(/^There is an existing appointment$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^TheDoctor should be notified of the changed status code$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I see a 'no authorized application' error message$/) do
+  pending # express the regexp above with the code you wish you had
+end

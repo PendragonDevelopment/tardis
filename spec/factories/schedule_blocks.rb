@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :schedule_block do
-    hostId 1
+    host_id 1
     event_id 1
     location_id 1
     start_time "2015-03-12 13:18:30"
@@ -9,5 +9,4 @@ FactoryGirl.define do
     reservation_max 1
     status 1
   end
-
 end

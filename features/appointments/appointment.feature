@@ -13,7 +13,7 @@ Scenario: Should be able to create a new appointment
 
 Scenario: Should be able to read an existing appointment
 	Given There is an existing appointment
-	When I read an appointment 
+	When I read an appointment
 	Then the requested values should be returned
 
 Scenario: Should be able to update an existing appointment
