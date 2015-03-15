@@ -1,29 +1,34 @@
 Given(/^I have authorization$/) do
-  pending # express the regexp above with the code you wish you had
+  User.last.authorized_applications == true
 end
 
 When(/^I create a new appointment$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment = User.appointments.new
+  #should we just work with defauts or is this where factoryGirl comes in?
 end
 
-Then(/^the appointment should have an intial status of$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^the appointment should have an intial status of "(.*?)"$/) do |arg1|
+  @appointment.status == arg1
 end
 
 Then(/^the appointment should have a schedule_block_id$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment.schedule_block_id.exists? == true
 end
 
 Then(/^the appointment should have an attendee_id$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment.attendee_id.exists? == true
 end
 
-Given(/^There is an exisiting appointment$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^the appointment should be saved to the database$/) do
+  @appointment.save!
+end
+
+Given(/^There is an existing appointment$/) do
+  @appointment.exists? == true
 end
 
 When(/^I read an appointment$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment = Appointment.find()
 end
 
 Then(/^the requested values should be returned$/) do
@@ -31,10 +36,11 @@ Then(/^the requested values should be returned$/) do
 end
 
 When(/^I update an appointment$/) do
-  pending # express the regexp above with the code you wish you had
+  #do want to include the values as part of the tests? best way to provide values?
+  @appointment.save(values)
 end
 
-Then(/^TheDoctor should be notified of the status$/) do
+Then(/^TheDoctor should be notified of the changed status$/) do
   pending # express the regexp above with the code you wish you had
 end
 
@@ -42,18 +48,6 @@ Then(/^TheDoctor should be notified of the updated fields$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^There is an existing appointment$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 When(/^I delete a document$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^TheDoctor should be notified of the changed status code$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I see a 'no authorized application' error message$/) do
-  pending # express the regexp above with the code you wish you had
+  Appointment.destroy(@appointment.id)
 end
