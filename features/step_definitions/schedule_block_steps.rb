@@ -7,7 +7,7 @@ When(/^I create a new schedule block$/) do
 end
 
 Then(/^I see a no authorized application error message$/) do
-  @schedule_block.exists? == false
+  page.should have_content "no authorized application"
 end
 
 Given(/^I am not logged in$/) do
@@ -15,7 +15,7 @@ Given(/^I am not logged in$/) do
 end
 
 Then(/^I see a 'you must be logged in' error message$/) do
-  pending # express the regexp above with the code you wish you had
+  page.should have_content "You must be logged in"
 end
 
 Given(/^I am logged in$/) do
@@ -23,15 +23,15 @@ Given(/^I am logged in$/) do
 end
 
 When(/^I create a valid ScheduleBlock$/) do
-  User.schedule_block.create(valid_params)
+  @valid_schedule_block = User.schedule_block.create(valid_params)
 end
 
 Then(/^I see a 'schedule block successfully created' message$/) do
-  pending # express the regexp above with the code you wish you had
+  page.should have_content "Schedule block successfully created"
 end
 
 Then(/^The schedule block has a schedule_block_id$/) do
-  pending # express the regexp above with the code you wish you had
+  @valid_schedule_block.id
 end
 
 Given(/^I have appropriate authorization$/) do
@@ -39,7 +39,7 @@ Given(/^I have appropriate authorization$/) do
 end
 
 When(/^I read an existing ScheduleBlock$/) do
-  pending # express the regexp above with the code you wish you had
+  @block = ScheduleBlock.find(1)
 end
 
 Then(/^the requested values should be returned$/) do
@@ -51,7 +51,7 @@ When(/^I update an existing ScheduleBlock$/) do
 end
 
 Then(/^it should return the updated values$/) do
-  User.schedule_block = valid_new_params
+  User.schedule_block == valid_new_params
 end
 
 Then(/^TheDoctor should be notified of the status$/) do
@@ -63,7 +63,7 @@ Then(/^TheDoctor should be notified of the updated values$/) do
 end
 
 When(/^I delete an existing ScheduleBlock$/) do
-  pending # express the regexp above with the code you wish you had
+  @valid_schedule_block.delete
 end
 
 Then(/^TheDoctor should be notified of the changed status code$/) do
