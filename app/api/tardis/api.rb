@@ -6,34 +6,58 @@ class API < Grape::API
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
     get do
+      @schedule_blocks = ScheduleBlock.all
+      return @schedule_blocks.to_json
     end
 
     desc "Creates a new Schedule Block with the given parameters"
     post do
+      @schedule_block = ScheduleBlock.new(params)
+      if @schedule_block.save  
+        return  @schedule_block.to_json
+      else 
+        return "Error!!!!!!!!!"
+      end
     end
 
     desc "Returns the Schedule Block with the given ID"
     get ":id" do
+      @schedule_block = ScheduleBlock.find(params[:id])
+      return @schedule_block.to_json
     end
 
     desc "Updates the Schedule Block with the given ID"
     put ":id" do
+      @schedule_block = ScheduleBlock.find(params[:id])
+      @schedule_block.update_attributes(params)
+      return @schedule_block.to_json
     end
 
     desc "Deletes the Schedule Block with the given ID"
     delete ":id" do
+      @schedule_block = ScheduleBlock.find(params[:id]).destroy
+      return "Schedule Block deleted"
     end
 
     desc "Returns a list of Appointments for a given Schedule Block"
     get ":id/appointments" do
+      @schedule_block = ScheduleBlock.find(params[:id])
+      @appointments = @schedule_block.appointments
+      return @appointments.to_json
     end
 
     desc "Creates a new Appointment with the given parameters for a given Schedule Block"
     post ":id/appointments" do
+      @schedule_block = ScheduleBlock.find(params[:id])
+      @appointment = @schedule_block.appointments.create(params)
+      return @appointment.to_json
     end
 
     desc "Returns the Appointment with the given ID for a given Schedule Block"
     get ":id/appointments/:apt_id" do
+      @schedule_block = ScheduleBlock.find(params[:id])
+      @appointment = @schedule_block.appointments.find(params[:id])
+      return @appointment.to_json
     end
   end
 
