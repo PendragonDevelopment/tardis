@@ -3,13 +3,13 @@ Given(/^I have authorization$/) do
 end
 
 When(/^I create a new appointment$/) do
-  @schedule_block = Factory(:schedule_block)
-  @appointment = @schedule_block.appointments.new
-  #should we just work with defauts or is this where factoryGirl comes in?
+  @schedule_block = FactoryGirl.create(:schedule_block)
+  @appointment = FactoryGirl.create(:appointment)
+  @appointment.schedule_block_id = @schedule_block.id
 end
 
-Then(/^the appointment should have an intial status of "(.*?)"$/) do |arg1|
-  @appointment.status == arg1
+Then(/^the appointment should have an intial status of pending$/) do
+  @appointment.status == "pending"
 end
 
 Then(/^the appointment should have a schedule_block_id$/) do
@@ -29,16 +29,16 @@ Given(/^There is an existing appointment$/) do
 end
 
 When(/^I read an appointment$/) do
-  @appointment = Appointment.find()
+  @found_appointment = Appointment.find(@appointment.id)
 end
 
 Then(/^the requested values should be returned$/) do
-  pending # express the regexp above with the code you wish you had
+  @found_appointment == @appointment
 end
 
 When(/^I update an appointment$/) do
-  #do want to include the values as part of the tests? best way to provide values?
-  @appointment.save(values)
+  @appointment.status = "booked"
+  @appointment.save!
 end
 
 Then(/^TheDoctor should be notified of the changed status$/) do
@@ -54,7 +54,7 @@ When(/^I delete a document$/) do
 end
 
 Given(/^There is an existing appointment$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment.exists? == true
 end
 
 Then(/^TheDoctor should be notified of the changed status code$/) do
