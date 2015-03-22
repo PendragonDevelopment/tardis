@@ -40,24 +40,24 @@ class API < Grape::API
   resource :appointments do
     desc "Updates the appointment with the given ID"
     put ":id" do
-        @appointment = Appointment.find(params[:id])
-        if @appointment.update_attributes(params)
-            return @appointment.to_json
-        else
-            return "There was an error updating the appointment."
-        end
+      @appointment = Appointment.find(params[:id])
+      if @appointment.update_attributes(params)
+        return @appointment.to_json
+      else
+        return "There was an error updating the appointment."
+      end
     end
 
     desc "Deletes the Appointment with the given ID"
     delete ":id" do
-        @appointment = Appointment.find(params[:id]).destroy
-        return "Appointment destroyed.  Utterly."
+      @appointment = Appointment.find(params[:id]).destroy
+      return "Appointment destroyed.  Utterly."
     end
 
     desc "Returns a list of all appointments"
     get do
-        @appointments = Appointment.all
-        return @appointments.to_json
+      @appointments = Appointment.all
+      return @appointments.to_json
     end
   end
 
