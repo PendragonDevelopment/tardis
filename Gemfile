@@ -32,7 +32,7 @@ group :development do
   gem 'spring-commands-rspec'
 end
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'

@@ -1,22 +1,19 @@
 require 'spec_helper'
 
-class ScheduleBlock
-end
-
 describe ScheduleBlock do
-  
+
   let(:schedule_block) { FactoryGirl.create :schedule_block }
 
-  describe "#create" do 
-    it "should have a host_id" do 
+  describe "#create" do
+    it "should have a host_id" do
       expect(@schedule_block.host_id).to eq(1)
     end
 
-    it "should have a start time" do 
+    it "should have a start time" do
       expect(@schedule_block.start_time).to eq(1)
     end
 
-    it "should have an end time" do 
+    it "should have an end time" do
       expect(@schedule_block.end_time).to eq("2015-03-12 13:18:30")
     end
 
@@ -24,13 +21,13 @@ describe ScheduleBlock do
       expect(@schedule_block.reservation_min).to eq("2015-03-12 13:18:30")
     end
 
-    it "should have a reservation max" do 
+    it "should have a reservation max" do
       expect(@schedule_block.reservation_max).to eq(1)
     end
 
   end
 
-  describe "#delete" do 
+  describe "#delete" do
 
     it "should set associated appointments status' to 'cancelled'" do
       expect(@schedule_block.status).to eq('Cancelled')
@@ -38,7 +35,7 @@ describe ScheduleBlock do
 
   end
 
-  describe "#update" do 
+  describe "#update" do
 
     it "should save the new parameters in the DB" do
       @schedule_block.update(start_time: '10:00', end_time: "11:00")
@@ -59,7 +56,7 @@ describe ScheduleBlock do
 
   end
 
-  describe "#access" do 
+  describe "#access" do
 
     it "should return the requested values" do
       # Can you have multiple expects in an it method block? Two thoughts crossed my mind here: 1) use multiple expect lines for each possible value or use one expect line with some sort of call to params...
@@ -70,11 +67,11 @@ describe ScheduleBlock do
   describe "Appointment#delete" do
 
     it "should verify ScheduleBlock status" do
-      expect(@schedule_block.status).to 
+      expect(@schedule_block.status).to
     end
 
     it "should update ScheduleBlock status if necessary" do
-      expect(@schedule_block.status).to 
+      expect(@schedule_block.status).to
     end
 
   end
