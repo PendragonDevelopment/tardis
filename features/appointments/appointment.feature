@@ -24,5 +24,6 @@ Scenario: Should be able to update an existing appointment
 
 Scenario: Should be able to delete a appointment
   Given There is an existing appointment
-  When I delete a document
+  When I delete an appointment
+  Then The appointment is deleted
   Then TheDoctor should be notified of the changed status
