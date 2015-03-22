@@ -3,8 +3,8 @@ Given(/^I have authorization$/) do
 end
 
 When(/^I create a new appointment$/) do
-  @schedule_block = Factory(:schedule_block)
-  @appointment = @schedule_block.appointments.new
+  # @schedule_block = Factory(:schedule_block)
+  # @appointment = @schedule_block.appointments.new
   #should we just work with defauts or is this where factoryGirl comes in?
 end
 
