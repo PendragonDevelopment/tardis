@@ -13,7 +13,7 @@ Scenario: Attempt to create a schedule block without being logged in
   When I create a valid ScheduleBlock
   Then I see a 'you must be logged in' error message
 
-Scenario:  Schedule block is created when logged in
+Scenario: Schedule block is created when logged in
   Given I am logged in
   When I create a valid ScheduleBlock
   Then I see a 'schedule block successfully created' message
