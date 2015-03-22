@@ -2,6 +2,7 @@ class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
+  before_action :doorkeeper_authorize!
 
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
