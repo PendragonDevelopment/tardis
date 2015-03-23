@@ -8,7 +8,7 @@ FactoryGirl.define do
     end_time "2015-10-10 11:00:00"
     reservation_min 1
     reservation_max 1
-    status 1
+    status :open
   end
 
   factory :appointment do

@@ -25,6 +25,11 @@ describe ScheduleBlock do
       expect(schedule_block.reservation_max).to eq(1)
     end
 
+    it "should have a valid status type" do
+      statuses = ['open', 'full', 'reserve_not_met', 'cancelled', 'restriced']
+      expect(statuses.include?(schedule_block.status)).to be_truthy
+    end
+
   end
 
   describe "#delete" do

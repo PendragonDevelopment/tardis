@@ -5,8 +5,7 @@ class ScheduleBlock < ActiveRecord::Base
 
   validates :host_id, :event_id, :location_id, :start_time, :end_time, :reservation_min, :reservation_max, presence: true
 
-  validates :status, inclusion: { in: %w(open full reserve_not_met cancelled restricted),
-    message: "%{value} is not a valid Schedule Block status." }
+  validates :status, inclusion: { in: %w(open full reserve_not_met cancelled restricted), message: "%{value} is not a valid Schedule Block status." }
 
 #  validate :start_time_is_a_date_time, :end_time_is_a_date_time
 
