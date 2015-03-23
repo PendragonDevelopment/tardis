@@ -9,12 +9,16 @@ describe ScheduleBlock do
       expect(schedule_block.host_id).to eq(1)
     end
 
-    it "should have a start time" do
-      expect(schedule_block.start_time).to eq("2015-10-10 10:00:00")
+    it "should have a start time that is a valid DateTime object" do
+      start_time = schedule_block.start_time.to_s
+      start_time = DateTime.parse(start_time)
+      expect(start_time.is_a?(DateTime)).to be_truthy
     end
 
-    it "should have an end time" do
-      expect(schedule_block.end_time).to eq("2015-10-10 11:00:00")
+    it "should have an end time that is a valid DateTime object" do
+      end_time = schedule_block.end_time.to_s
+      end_time = DateTime.parse(end_time)
+      expect(end_time.is_a?(DateTime)).to be_truthy
     end
 
     it "should have a reservation min" do
@@ -26,7 +30,7 @@ describe ScheduleBlock do
     end
 
     it "should have a valid status type" do
-      statuses = ['open', 'full', 'reserve_not_met', 'cancelled', 'restriced']
+      statuses = ['open', 'full', 'reserve_not_met', 'cancelled', 'restricted']
       expect(statuses.include?(schedule_block.status)).to be_truthy
     end
 
