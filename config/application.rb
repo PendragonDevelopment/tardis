@@ -24,6 +24,12 @@ module Tardis
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    config.to_prepare do
+      Doorkeeper::ApplicationController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout "application"
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
