@@ -1,4 +1,4 @@
-# Tardis
+# TARDIS
 ================
 
 ## Getting Started
