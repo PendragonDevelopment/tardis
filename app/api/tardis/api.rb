@@ -87,8 +87,16 @@ class API < Grape::API
   end
 
   resource :search do
+    desc "Expects a list of filter params and returns a response of objects that match"   
+    post "appointments" do
+      @appointments = Appointment.where("attendee = ?", params[:attendee])
+      return appointments.to_json
+    end
+
     desc "Expects a list of filter params and returns a response of objects that match"
-    post do
+    post "schedule_blocks" do
+      @schedule_blocks = ScheduleBlock.where("host_id = ?", params[:host_id])
+      return @schedule_blocks.to_json
     end
   end
 
