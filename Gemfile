@@ -19,6 +19,8 @@ gem 'doorkeeper'
 gem 'annotate'
 gem 'grape'
 gem 'hashie_rails'
+gem 'validates_timeliness', '~> 3.0'
+gem 'high_voltage'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -32,7 +34,7 @@ group :development do
   gem 'spring-commands-rspec'
 end
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'

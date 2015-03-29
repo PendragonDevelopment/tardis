@@ -3,13 +3,14 @@ Given(/^I have authorization$/) do
 end
 
 When(/^I create a new appointment$/) do
-  @schedule_block = Factory(:schedule_block)
-  @appointment = @schedule_block.appointments.new
-  #should we just work with defauts or is this where factoryGirl comes in?
+  @schedule_block = FactoryGirl.create(:schedule_block)
+  @appointment = FactoryGirl.create(:appointment)
+  @appointment.schedule_block_id = @schedule_block.id
+  @appointment.save!
 end
 
-Then(/^the appointment should have an intial status of "(.*?)"$/) do |arg1|
-  @appointment.status == arg1
+Then(/^the appointment should have an intial status of pending$/) do
+  @appointment.status == "pending"
 end
 
 Then(/^the appointment should have a schedule_block_id$/) do
@@ -21,7 +22,7 @@ Then(/^the appointment should have an attendee_id$/) do
 end
 
 Then(/^the appointment should be saved to the database$/) do
-  @appointment.save!
+  @appointment.persisted? == true
 end
 
 Given(/^There is an existing appointment$/) do
@@ -29,38 +30,52 @@ Given(/^There is an existing appointment$/) do
 end
 
 When(/^I read an appointment$/) do
-  @appointment = Appointment.find()
+  @found_appointment = Appointment.find(@appointment.id)
 end
 
 Then(/^the requested values should be returned$/) do
-  pending # express the regexp above with the code you wish you had
+  @found_appointment == @appointment
 end
 
 When(/^I update an appointment$/) do
-  #do want to include the values as part of the tests? best way to provide values?
-  @appointment.save(values)
+  @appointment.status = "booked"
+  @appointment.save!
 end
 
 Then(/^TheDoctor should be notified of the changed status$/) do
-  pending # express the regexp above with the code you wish you had
+  # TODO - Make sure consumer application notification was sent
+  # TheDoctor is in charge of making sure the notification is saved corretly
+  # So we just need to test if the notification was sent properly
+  pending
 end
 
 Then(/^TheDoctor should be notified of the updated fields$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I delete a document$/) do
-  Appointment.destroy(@appointment.id)
+  # TODO - Make sure consumer application notification was sent
+  # TheDoctor is in charge of making sure the notification is saved corretly
+  # So we just need to test if the notification was sent properly
+  pending
 end
 
 Given(/^There is an existing appointment$/) do
-  pending # express the regexp above with the code you wish you had
+  @appointment.exists? == true
+end
+
+When(/^I delete an appointment$/) do
+  Appointment.destroy!(@appointment.id)
+end
+
+Then(/^The appointment is deleted$/) do
+  @appointment.destroyed? == true
 end
 
 Then(/^TheDoctor should be notified of the changed status code$/) do
-  pending # express the regexp above with the code you wish you had
+  # TODO - Make sure consumer application notification was sent
+  # TheDoctor is in charge of making sure the notification is saved corretly
+  # So we just need to test if the notification was sent properly
+  pending
 end
 
 Then(/^I see a 'no authorized application' error message$/) do
-  pending # express the regexp above with the code you wish you had
+  # TODO - Check authorization using Doorkeeper. I don't think Doorkeeper is fully implemented yet...
+  pending
 end
