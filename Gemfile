@@ -45,7 +45,6 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'cucumber-rails', :require => false
 end
 group :test do
   gem 'capybara'
