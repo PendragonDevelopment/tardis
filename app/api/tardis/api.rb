@@ -1,8 +1,14 @@
+require 'doorkeeper/grape/helpers'
+
 class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
-  before_action :doorkeeper_authorize!
+  helpers Doorkeeper::Grape::Helpers
+
+  before do
+    doorkeeper_authorize!
+  end
 
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
