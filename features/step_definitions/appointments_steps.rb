@@ -3,10 +3,10 @@ Given(/^I have authorization$/) do
 end
 
 When(/^I create a new appointment$/) do
-  @schedule_block = FactoryGirl.create(:schedule_block)
-  @appointment = FactoryGirl.create(:appointment)
-  @appointment.schedule_block_id = @schedule_block.id
-  @appointment.save!
+  #@schedule_block = FactoryGirl.create(:schedule_block)
+  #@appointment = FactoryGirl.create(:appointment)
+  #@appointment.schedule_block_id = @schedule_block.id
+  #@appointment.save!
 end
 
 Then(/^the appointment should have an intial status of pending$/) do
