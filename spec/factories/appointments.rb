@@ -24,7 +24,6 @@ FactoryGirl.define do
   end
 
   factory :appointment do
-    schedule_block @schedule_block
     attendee 1
     status 1
   end
