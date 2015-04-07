@@ -10,6 +10,10 @@ class API < Grape::API
     doorkeeper_authorize!
   end
 
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
+
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
     get do
@@ -20,9 +24,9 @@ class API < Grape::API
     desc "Creates a new Schedule Block with the given parameters"
     post do
       @schedule_block = ScheduleBlock.new(params)
-      if @schedule_block.save  
+      if @schedule_block.save
         return  @schedule_block.to_json
-      else 
+      else
         return "Error!!!!!!!!!"
       end
     end
@@ -93,7 +97,7 @@ class API < Grape::API
   end
 
   resource :search do
-    desc "Expects a list of filter params and returns a response of appointments that match"   
+    desc "Expects a list of filter params and returns a response of appointments that match"
     get "appointments" do
       @appointments = Appointment.where("attendee = ?", params[:attendee])
       return appointments.to_json

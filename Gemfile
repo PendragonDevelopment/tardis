@@ -18,7 +18,7 @@ gem 'unicorn-rails'
 gem 'doorkeeper'
 gem 'annotate'
 gem 'grape'
-gem 'hashie_rails'
+gem 'hashie-forbidden_attributes'
 gem 'validates_timeliness', '~> 3.0'
 gem 'high_voltage'
 
