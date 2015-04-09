@@ -16,11 +16,30 @@
 #  user_id         :integer
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe ScheduleBlock do
+describe ScheduleBlock, type: :model do
 
   let(:schedule_block) { FactoryGirl.create :schedule_block }
+
+  describe "Model attributes exist" do
+    subject {schedule_block}
+
+    it {is_expected.to respond_to(:id)}
+    it {is_expected.to respond_to(:host_id)}
+    it {is_expected.to respond_to(:event_id)}
+    it {is_expected.to respond_to(:location_id)}
+    it {is_expected.to respond_to(:start_time)}
+    it {is_expected.to respond_to(:end_time)}
+    it {is_expected.to respond_to(:reservation_min)}
+    it {is_expected.to respond_to(:reservation_max)}
+    it {is_expected.to respond_to(:status)}
+    it {is_expected.to respond_to(:updated_at)}
+    it {is_expected.to respond_to(:created_at)}
+    it {is_expected.to respond_to(:user_id)}
+
+    it {is_expected.to be_valid}
+  end
 
   describe "#create" do
     it "should have a host_id" do
