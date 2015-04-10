@@ -1,4 +1,8 @@
 Doorkeeper.configure do
+
+  # Change tokens so they don't expire
+  authorization_code_expires_in nil
+
   # Change the ORM that doorkeeper will use.
   # Currently supported options are :active_record, :mongoid2, :mongoid3,
   # :mongoid4, :mongo_mapper
