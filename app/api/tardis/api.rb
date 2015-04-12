@@ -1,12 +1,19 @@
+
+require 'grape-swagger'
 require 'doorkeeper/grape/helpers'
+
 
 class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
+  add_swagger_documentation
+  
   helpers Doorkeeper::Grape::Helpers
 
   before do
+    header['Access-Control-Allow-Origin'] = '*'
+    header['Access-Control-Request-Method'] = '*'
     doorkeeper_authorize!
   end
 
