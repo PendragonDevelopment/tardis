@@ -1,20 +1,19 @@
-<<<<<<< HEAD
+
 require 'grape-swagger'
-=======
 require 'doorkeeper/grape/helpers'
->>>>>>> c828ecac951af0b9abcc937c8d90ff812382f56f
+
 
 class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
-<<<<<<< HEAD
   add_swagger_documentation
   
-=======
   helpers Doorkeeper::Grape::Helpers
 
   before do
+    header['Access-Control-Allow-Origin'] = '*'
+    header['Access-Control-Request-Method'] = '*'
     doorkeeper_authorize!
   end
 
@@ -22,7 +21,6 @@ class API < Grape::API
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 
->>>>>>> c828ecac951af0b9abcc937c8d90ff812382f56f
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
     get do
