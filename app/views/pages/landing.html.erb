@@ -1,0 +1,14 @@
+<div class="jumbotron">
+	<h1>Welcome to the TARDIS</h1>
+
+	<% if user_signed_in? %>
+		
+		<p>You are signed in as <%= current_user.email %></p>
+		<%= link_to 'Go To Your Applications', oauth_applications_path, class: 'btn btn-lg btn-primary' %>
+	
+	<% else %>
+
+		<p>You must <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> before continuing.</p>
+		
+	<% end %>
+</div>

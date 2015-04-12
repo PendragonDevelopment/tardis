@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20150313204043) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "schedule_block_id",             null: false
-    t.integer  "attendee",                      null: false
-    t.integer  "status",            default: 0, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "schedule_block_id"
+    t.integer  "attendee"
+    t.integer  "status"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "appointments", ["schedule_block_id"], name: "index_appointments_on_schedule_block_id", using: :btree

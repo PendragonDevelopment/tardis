@@ -18,8 +18,15 @@ gem 'unicorn-rails'
 gem 'doorkeeper'
 gem 'annotate'
 gem 'grape'
-gem 'hashie_rails'
 gem 'grape-swagger'
+gem 'hashie-forbidden_attributes'
+gem 'validates_timeliness', '~> 3.0'
+gem 'high_voltage'
+
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -39,7 +46,6 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'cucumber-rails', :require => false
 end
 group :test do
   gem 'capybara'

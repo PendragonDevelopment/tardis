@@ -1,28 +1,72 @@
-require 'spec_helper'
+# == Schema Information
+#
+# Table name: schedule_blocks
+#
+#  id              :integer          not null, primary key
+#  host_id         :integer
+#  event_id        :integer
+#  location_id     :integer
+#  start_time      :datetime
+#  end_time        :datetime
+#  reservation_min :integer          default(1)
+#  reservation_max :integer
+#  status          :integer          default(0), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :integer
+#
 
-describe ScheduleBlock do
+require 'rails_helper'
+
+describe ScheduleBlock, type: :model do
 
   let(:schedule_block) { FactoryGirl.create :schedule_block }
 
+  describe "Model attributes exist" do
+    subject {schedule_block}
+
+    it {is_expected.to respond_to(:id)}
+    it {is_expected.to respond_to(:host_id)}
+    it {is_expected.to respond_to(:event_id)}
+    it {is_expected.to respond_to(:location_id)}
+    it {is_expected.to respond_to(:start_time)}
+    it {is_expected.to respond_to(:end_time)}
+    it {is_expected.to respond_to(:reservation_min)}
+    it {is_expected.to respond_to(:reservation_max)}
+    it {is_expected.to respond_to(:status)}
+    it {is_expected.to respond_to(:updated_at)}
+    it {is_expected.to respond_to(:created_at)}
+    it {is_expected.to respond_to(:user_id)}
+
+    it {is_expected.to be_valid}
+  end
+
   describe "#create" do
     it "should have a host_id" do
-      expect(@schedule_block.host_id).to eq(1)
+      expect(schedule_block.host_id).to eq(1)
     end
 
-    it "should have a start time" do
-      expect(@schedule_block.start_time).to eq(1)
+    it "should have a start time that is a valid DateTime object" do
+      start_time = DateTime.parse(schedule_block.start_time.to_s)
+      expect(start_time.is_a?(DateTime)).to be_truthy
     end
 
-    it "should have an end time" do
-      expect(@schedule_block.end_time).to eq("2015-03-12 13:18:30")
+    it "should have an end time that is a valid DateTime object" do
+      end_time = DateTime.parse(schedule_block.end_time.to_s)
+      expect(end_time.is_a?(DateTime)).to be_truthy
     end
 
     it "should have a reservation min" do
-      expect(@schedule_block.reservation_min).to eq("2015-03-12 13:18:30")
+      expect(schedule_block.reservation_min).to eq(1)
     end
 
     it "should have a reservation max" do
-      expect(@schedule_block.reservation_max).to eq(1)
+      expect(schedule_block.reservation_max).to eq(1)
+    end
+
+    it "should have a valid status type" do
+      statuses = ['open', 'full', 'reserve_not_met', 'cancelled', 'restricted']
+      expect(statuses.include?(schedule_block.status)).to be_truthy
     end
 
   end
@@ -30,7 +74,6 @@ describe ScheduleBlock do
   describe "#delete" do
 
     it "should set associated appointments status' to 'cancelled'" do
-      expect(@schedule_block.status).to eq('Cancelled')
     end
 
   end
@@ -38,20 +81,12 @@ describe ScheduleBlock do
   describe "#update" do
 
     it "should save the new parameters in the DB" do
-      @schedule_block.update(start_time: '10:00', end_time: "11:00")
-      expect(@schedule_block.reload.start_time).to eql('10:00')
-      expect(@schedule_block.reload.end_time).to eql('11:00')
     end
 
     it "should change all associated appointments" do
-      @schedule_block.appointments.each do |appointment|
-        appointment.start_time.update_attributes(start_time: '10:00')
-      end
-      expect(@schedule_block.appointments.each.start_time).to eql('10:00')
     end
 
     it "should notify the Doctor of the appropriate status code and updated information" do
-      expect(@schedule_block.notify_doctor).to be_tru
     end
 
   end
@@ -59,7 +94,6 @@ describe ScheduleBlock do
   describe "#access" do
 
     it "should return the requested values" do
-      # Can you have multiple expects in an it method block? Two thoughts crossed my mind here: 1) use multiple expect lines for each possible value or use one expect line with some sort of call to params...
     end
 
   end
@@ -67,11 +101,9 @@ describe ScheduleBlock do
   describe "Appointment#delete" do
 
     it "should verify ScheduleBlock status" do
-      expect(@schedule_block.status).to
     end
 
     it "should update ScheduleBlock status if necessary" do
-      expect(@schedule_block.status).to
     end
 
   end
