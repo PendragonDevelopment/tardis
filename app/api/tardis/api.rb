@@ -24,8 +24,9 @@ class API < Grape::API
 
     desc "Creates a new Schedule Block with the given parameters"
     post do
+      sanitized_params = schedule_block_params(params)
       content_type "application/json"
-      @schedule_block = ScheduleBlock.new(params)
+      @schedule_block = ScheduleBlock.new(sanitized_params)
       if @schedule_block.save
         return  @schedule_block.as_json
       else
@@ -42,9 +43,10 @@ class API < Grape::API
 
     desc "Updates the Schedule Block with the given ID"
     put ":id" do
+      sanitized_params = schedule_block_params(params)
       content_type "application/json"
-      @schedule_block = ScheduleBlock.find(params[:id])
-      @schedule_block.update_attributes(params)
+      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
+      @schedule_block.update_attributes(sanitized_params)
       return @schedule_block.as_json
     end
 
@@ -65,9 +67,10 @@ class API < Grape::API
 
     desc "Creates a new Appointment with the given parameters for a given Schedule Block"
     post ":id/appointments" do
+      sanitized_params = appointment_params(params)
       content_type "application/json"
-      @schedule_block = ScheduleBlock.find(params[:id])
-      @appointment = @schedule_block.appointments.create(params)
+      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
+      @appointment = @schedule_block.appointments.create(sanitized_params)
       return @appointment.as_json
     end
 
@@ -83,9 +86,10 @@ class API < Grape::API
   resource :appointments do
     desc "Updates the appointment with the given ID"
     put ":id" do
+      sanitized_params = appointment_params(params)
       content_type "application/json"
-      @appointment = Appointment.find(params[:id])
-      if @appointment.update_attributes(params)
+      @appointment = Appointment.find(sanitized_params[:id])
+      if @appointment.update_attributes(sanitized_params)
         return @appointment.as_json
       else
         return "There was an error updating the appointment."
@@ -123,4 +127,26 @@ class API < Grape::API
     end
   end
 
+private
+
+def schedule_block_params(params)
+  params do
+    requires :host_id         , type:Integer
+    requires :event_id        , type: Integer
+    requires :location_id     , type: Integer
+    requires :start_time      , type: Datetime
+    requires :end_time        , type:Datetime
+    requires :reservation_min , type:Integer
+    requires :reservation_max , type:Integer
+    requires :status          , type:Integer
+    requires :user_id         , type:Integer
+  end
+end
+
+def appointment_params(params)
+  params do
+    requires :schedule_block_id ,type: Integer
+    requires :attendee          ,type: Integer
+    requires :status            ,type: Integer
+  end
 end
