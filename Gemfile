@@ -19,6 +19,7 @@ gem 'doorkeeper'
 gem 'annotate'
 gem 'grape'
 gem 'hashie_rails'
+gem 'grape-swagger'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

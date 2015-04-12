@@ -1,8 +1,11 @@
+require 'grape-swagger'
+
 class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
-
+  add_swagger_documentation
+  
   resource :schedule_blocks do
     desc "Returns a list of Schedule Blocks"
     get do
