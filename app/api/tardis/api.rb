@@ -19,7 +19,7 @@ class API < Grape::API
     get do
       content_type "application/json"
       @schedule_blocks = ScheduleBlock.all
-      return @schedule_blocks.to_json
+      return @schedule_blocks.as_json
     end
 
     desc "Creates a new Schedule Block with the given parameters"
@@ -27,7 +27,7 @@ class API < Grape::API
       content_type "application/json"
       @schedule_block = ScheduleBlock.new(params)
       if @schedule_block.save
-        return  @schedule_block.to_json
+        return  @schedule_block.as_json
       else
         return "Error!!!!!!!!!"
       end
@@ -37,7 +37,7 @@ class API < Grape::API
     get ":id" do
       content_type "application/json"
       @schedule_block = ScheduleBlock.find(params[:id])
-      return @schedule_block.to_json
+      return @schedule_block.as_json
     end
 
     desc "Updates the Schedule Block with the given ID"
@@ -45,7 +45,7 @@ class API < Grape::API
       content_type "application/json"
       @schedule_block = ScheduleBlock.find(params[:id])
       @schedule_block.update_attributes(params)
-      return @schedule_block.to_json
+      return @schedule_block.as_json
     end
 
     desc "Deletes the Schedule Block with the given ID"
@@ -60,7 +60,7 @@ class API < Grape::API
       content_type "application/json"
       @schedule_block = ScheduleBlock.find(params[:id])
       @appointments = @schedule_block.appointments
-      return @appointments.to_json
+      return @appointments.as_json
     end
 
     desc "Creates a new Appointment with the given parameters for a given Schedule Block"
@@ -68,7 +68,7 @@ class API < Grape::API
       content_type "application/json"
       @schedule_block = ScheduleBlock.find(params[:id])
       @appointment = @schedule_block.appointments.create(params)
-      return @appointment.to_json
+      return @appointment.as_json
     end
 
     desc "Returns the Appointment with the given ID for a given Schedule Block"
@@ -76,7 +76,7 @@ class API < Grape::API
       content_type "application/json"
       @schedule_block = ScheduleBlock.find(params[:id])
       @appointment = @schedule_block.appointments.find(params[:id])
-      return @appointment.to_json
+      return @appointment.as_json
     end
   end
 
@@ -86,7 +86,7 @@ class API < Grape::API
       content_type "application/json"
       @appointment = Appointment.find(params[:id])
       if @appointment.update_attributes(params)
-        return @appointment.to_json
+        return @appointment.as_json
       else
         return "There was an error updating the appointment."
       end
@@ -103,7 +103,7 @@ class API < Grape::API
     get do
       content_type "application/json"
       @appointments = Appointment.all
-      return @appointments.to_json
+      return @appointments.as_json
     end
   end
 
@@ -112,14 +112,14 @@ class API < Grape::API
     get "appointments" do
       content_type "application/json"
       @appointments = Appointment.where("attendee = ?", params[:attendee])
-      return appointments.to_json
+      return appointments.as_json
     end
 
     desc "Expects a list of filter params and returns a response of schedule_blocks that match"
     get "schedule_blocks" do
       content_type "application/json"
       @schedule_blocks = ScheduleBlock.where("host_id = ?", params[:host_id])
-      return @schedule_blocks.to_json
+      return @schedule_blocks.as_json
     end
   end
 
