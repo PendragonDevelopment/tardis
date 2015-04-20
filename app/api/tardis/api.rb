@@ -6,6 +6,7 @@ class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
+  add_swagger_documentation
     
   helpers Doorkeeper::Grape::Helpers
 
