@@ -30,7 +30,7 @@ class API < Grape::API
       if @schedule_block.save
         return  @schedule_block.as_json
       else
-        return "Error!!!!!!!!!"
+        return "Schedule Block could not be saved"
       end
     end
 
@@ -127,26 +127,27 @@ class API < Grape::API
     end
   end
 
-private
+  private
 
-def schedule_block_params(params)
-  params do
-    requires :host_id         , type:Integer
-    requires :event_id        , type: Integer
-    requires :location_id     , type: Integer
-    requires :start_time      , type: Datetime
-    requires :end_time        , type:Datetime
-    requires :reservation_min , type:Integer
-    requires :reservation_max , type:Integer
-    requires :status          , type:Integer
-    requires :user_id         , type:Integer
-  end
-end
+    def schedule_block_params(params)
+      params do
+        requires :host_id         , type: Integer
+        requires :event_id        , type: Integer
+        requires :location_id     , type: Integer
+        requires :start_time      , type: Datetime
+        requires :end_time        , type: Datetime
+        requires :reservation_min , type: Integer
+        requires :reservation_max , type: Integer
+        requires :status          , type: Integer
+      end
+    end
 
-def appointment_params(params)
-  params do
-    requires :schedule_block_id ,type: Integer
-    requires :attendee          ,type: Integer
-    requires :status            ,type: Integer
-  end
+    def appointment_params(params)
+      params do
+        requires :schedule_block_id , type: Integer
+        requires :attendee          , type: Integer
+        requires :status            , type: Integer
+      end
+    end
+
 end
