@@ -25,7 +25,7 @@ module API
 		      if @schedule_block.save
 		        return  @schedule_block.as_json
 		      else
-		        return "Error!!!!!!!!!"
+		        return "Schedule Block could not be saved"
 		      end
 		    end
 
@@ -90,7 +90,6 @@ module API
 				    requires :reservation_min , type:Integer
 				    requires :reservation_max , type:Integer
 				    requires :status          , type:Integer
-				    requires :user_id         , type:Integer
 				  end
 				end
 		end

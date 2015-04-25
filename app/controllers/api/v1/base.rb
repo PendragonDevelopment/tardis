@@ -4,6 +4,7 @@ module API
     class Base < Grape::API
       mount API::V1::Appointments
       mount API::V1::ScheduleBlocks
+      mount API::V1::Search
     end
   end
 end
