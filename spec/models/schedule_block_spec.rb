@@ -57,11 +57,11 @@ describe ScheduleBlock, type: :model do
     end
 
     it "should have a reservation min" do
-      expect(schedule_block.reservation_min).to eq(1)
+      expect(schedule_block.reservation_min).to eq(2)
     end
 
     it "should have a reservation max" do
-      expect(schedule_block.reservation_max).to eq(1)
+      expect(schedule_block.reservation_max).to eq(10)
     end
 
     it "should have a valid status type" do
