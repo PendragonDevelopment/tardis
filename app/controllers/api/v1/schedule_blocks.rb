@@ -19,9 +19,9 @@ module API
 
 		    desc "Creates a new Schedule Block with the given parameters"
 		    post do
-		      sanitized_params = schedule_block_params(params)
+		      # sanitized_params = schedule_block_params(params)
 		      content_type "application/json"
-		      @schedule_block = ScheduleBlock.new(sanitized_params)
+		      @schedule_block = ScheduleBlock.new(schedule_block_params)
 		      if @schedule_block.save
 		        return  @schedule_block.as_json
 		      else
@@ -80,18 +80,18 @@ module API
 
 		  private
 
-			  def schedule_block_params(params)
-				  params do
-				    requires :host_id         , type:Integer
-				    requires :event_id        , type: Integer
-				    requires :location_id     , type: Integer
-				    requires :start_time      , type: Datetime
-				    requires :end_time        , type:Datetime
-				    requires :reservation_min , type:Integer
-				    requires :reservation_max , type:Integer
-				    requires :status          , type:Integer
-				  end
-				end
+			  #def schedule_block_params(params)
+				#  params do
+				#    requires :host_id         , type:Integer
+				#    requires :event_id        , type: Integer
+				#    requires :location_id     , type: Integer
+				#    requires :start_time      , type: Datetime
+				#    requires :end_time        , type:Datetime
+				#    requires :reservation_min , type:Integer
+				#    requires :reservation_max , type:Integer
+				#    requires :status          , type:Integer
+				#  end
+				#end
 		end
 	end
 end
