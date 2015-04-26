@@ -25,7 +25,7 @@ module API
             raise e
           else
             # Raven.capture_exception(e)
-            error_response(message: "Internal server error", status: 500)
+            error_response(message: "Internal server error: #{e}", status: 500)
           end
         end
       end
