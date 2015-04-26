@@ -21,7 +21,7 @@ module API
 		    post do
 		      # sanitized_params = schedule_block_params(params)
 		      content_type "application/json"
-		      @schedule_block = ScheduleBlock.new(schedule_block_params)
+		      @schedule_block = ScheduleBlock.new(params)
 		      if @schedule_block.save
 		        return  @schedule_block.as_json
 		      else
