@@ -38,13 +38,9 @@ module API
 
 		  private
 
-		  	def appointment_params(params)
-				  params do
-				    requires :schedule_block_id ,type: Integer
-				    requires :attendee          ,type: Integer
-				    requires :status            ,type: Integer
-				  end
-				end
+	  	def appointment_params(params)
+			  params
+			end
 		end
 	end
 end
