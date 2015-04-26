@@ -11,7 +11,7 @@ module API
 			resource :appointments do
 		    desc "Updates the appointment with the given ID"
 		    put ":id" do
-		      sanitized_params = appointment_params(params)
+		      sanitized_params = params
 		      content_type "application/json"
 		      @appointment = Appointment.find(sanitized_params[:id])
 		      if @appointment.update_attributes(sanitized_params)
@@ -35,12 +35,6 @@ module API
 		      return @appointments.as_json
 		    end
 		  end
-
-		  private
-
-	  	def appointment_params(params)
-			  params
-			end
 		end
 	end
 end
