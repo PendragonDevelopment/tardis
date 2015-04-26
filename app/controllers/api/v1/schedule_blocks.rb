@@ -38,7 +38,7 @@ module API
 
 		    desc "Updates the Schedule Block with the given ID"
 		    put ":id" do
-		      sanitized_params = schedule_block_params(params)
+		      sanitized_params = params
 		      content_type "application/json"
 		      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
 		      @schedule_block.update_attributes(sanitized_params)
