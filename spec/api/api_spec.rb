@@ -86,7 +86,7 @@ describe API do
 
 		  describe 'GET #schedule_blocks' do
 		  	it 'responds with 401' do
-					get '/api/v1/schedule_blocks', :format => :json
+					get '/api/v1/schedule_blocks', :format => :json, :access_token => nil
 		      expect(response.status).to eq(401)
 				end
 		  end
@@ -95,7 +95,7 @@ describe API do
 		  	let(:schedule_block) {FactoryGirl.create(:schedule_block)}
 
 		  	it 'responds with 401' do
-		  		get "/api/v1/schedule_blocks/#{schedule_block.id}", :format => :json
+		  		get "/api/v1/schedule_blocks/#{schedule_block.id}", :format => :json, :access_token => nil
 		  		expect(response.status).to eq(401)
 		  	end
 		  end
