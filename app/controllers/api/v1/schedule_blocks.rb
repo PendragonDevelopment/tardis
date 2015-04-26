@@ -25,7 +25,7 @@ module API
 		      if @schedule_block.save
 		        return  @schedule_block.as_json
 		      else
-		        return "Schedule Block could not be saved"
+		        return "Schedule Block could not be saved: #{@schedule_block.errors.full_messages}"
 		      end
 		    end
 
