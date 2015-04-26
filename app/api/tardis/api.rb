@@ -1,13 +1,17 @@
+
 require 'doorkeeper/grape/helpers'
+
 
 class API < Grape::API
   prefix 'api'
   version 'v1'
   format :json
+  add_swagger_documentation
+    
   helpers Doorkeeper::Grape::Helpers
 
   before do
-    doorkeeper_authorize!
+      doorkeeper_authorize!
   end
 
   def current_resource_owner
