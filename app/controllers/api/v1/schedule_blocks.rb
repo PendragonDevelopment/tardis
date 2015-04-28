@@ -41,8 +41,11 @@ module API
 		      sanitized_params = params
 		      content_type "application/json"
 		      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
-		      @schedule_block.update_attributes(sanitized_params)
-		      return @schedule_block.as_json
+		      if @schedule_block.update_attributes(sanitized_params)
+		      	return @schedule_block.as_json
+		      else
+		      	return "Schedule Block could not be updated: #{@schedule_block.errors.full_messages}"
+		      end
 		    end
 
 		    desc "Deletes the Schedule Block with the given ID"
