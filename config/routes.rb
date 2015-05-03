@@ -41,4 +41,5 @@ Rails.application.routes.draw do
 
   # GRAPE
   mount API::Base => '/api'
+  mount GrapeSwaggerRails::Engine => '/swagger'
 end
