@@ -27,11 +27,17 @@ describe API do
 		  end
 
 		  describe 'POST #schedule_block' do
-		  	let(:sb_params) {FactoryGirl.attributes_for(:schedule_block)}
+		  	let!(:sb_params) {FactoryGirl.attributes_for(:schedule_block)}
+
+		  	before(:each) do
+		  		@sb_params = {
+		  			:params => sb_params
+		  		}
+		  	end
 
 		  	it 'responds with 200' do
-		  		sb_params[:access_token] = oauth_token.token
-		  		post "/api/v1/schedule_blocks", :format => :json, :schedule_block => sb_params
+		  		post "/api/v1/schedule_blocks", :schedule_block => @sb_params, :access_token => oauth_token.token
+		  		puts response.to_a
 		  		expect(response.status).to eq(200)
 		  	end
 		  end
