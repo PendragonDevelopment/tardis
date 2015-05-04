@@ -17,7 +17,7 @@ module API
 		    end
 
 		    desc "Returns all of the Schedule Blocks attached to the given Event Id"
-		    get "schedule_blocks/:event_id" do
+		    get "schedule_blocks" do
 		    	content_type "application/json"
 		    	@schedule_blocks = ScheduleBlock.where("event_id = ?", params[:event_id])
 		    	return @schedule_blocks.as_json
