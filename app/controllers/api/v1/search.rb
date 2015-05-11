@@ -16,11 +16,11 @@ module API
 		      return appointments.as_json
 		    end
 
-		    desc "Expects a list of filter params and returns a response of schedule_blocks that match"
+		    desc "Returns all of the Schedule Blocks attached to the given Event Id"
 		    get "schedule_blocks" do
-		      content_type "application/json"
-		      @schedule_blocks = ScheduleBlock.where("host_id = ?", params[:host_id])
-		      return @schedule_blocks.as_json
+		    	content_type "application/json"
+		    	@schedule_blocks = ScheduleBlock.where("event_id = ?", params[:event_id])
+		    	return @schedule_blocks.as_json
 		    end
 		  end
     end

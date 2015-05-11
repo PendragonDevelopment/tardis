@@ -19,9 +19,9 @@ module API
 
 		    desc "Creates a new Schedule Block with the given parameters"
 		    post do
-		      # sanitized_params = schedule_block_params(params)
+		      sanitized_params = schedule_block_params(params)
 		      content_type "application/json"
-		      @schedule_block = ScheduleBlock.new(params)
+		      @schedule_block = ScheduleBlock.new(sanitized_params)
 		      if @schedule_block.save
 		        return  @schedule_block.as_json
 		      else
@@ -38,9 +38,9 @@ module API
 
 		    desc "Updates the Schedule Block with the given ID"
 		    put ":id" do
-		      sanitized_params = params
+		      sanitized_params = schedule_block_params(params)
 		      content_type "application/json"
-		      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
+		      @schedule_block = ScheduleBlock.find(params[:id])
 		      if @schedule_block.update_attributes(sanitized_params)
 		      	return @schedule_block.as_json
 		      else
@@ -67,7 +67,7 @@ module API
 		    post ":id/appointments" do
 		      sanitized_params = appointment_params(params)
 		      content_type "application/json"
-		      @schedule_block = ScheduleBlock.find(sanitized_params[:id])
+		      @schedule_block = ScheduleBlock.find(params[:id])
 		      @appointment = @schedule_block.appointments.create(sanitized_params)
 		      return @appointment.as_json
 		    end
@@ -83,18 +83,29 @@ module API
 
 		  private
 
-			  #def schedule_block_params(params)
-				#  params do
-				#    requires :host_id         , type:Integer
-				#    requires :event_id        , type: Integer
-				#    requires :location_id     , type: Integer
-				#    requires :start_time      , type: Datetime
-				#    requires :end_time        , type:Datetime
-				#    requires :reservation_min , type:Integer
-				#    requires :reservation_max , type:Integer
-				#    requires :status          , type:Integer
-				#  end
-				#end
+		    def schedule_block_params(params)
+		    	params do
+				    requires :event_id        , type: Integer
+				    requires :start_time      , type: Datetime
+				    requires :end_time        , type: Datetime
+				    requires :reservation_min , type: Integer
+				    requires :reservation_max , type: Integer
+				    requires :status          , type: Integer
+				  end
+		    end
+
+		    def appointment_params(params)
+		    	params do
+		    		requires :attendee,  	type: Integer
+		    		requires :status, 		type: Integer
+		    	end
+		    end
 		end
 	end
 end
+
+
+
+
+
+

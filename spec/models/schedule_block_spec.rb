@@ -26,9 +26,7 @@ describe ScheduleBlock, type: :model do
     subject {schedule_block}
 
     it {is_expected.to respond_to(:id)}
-    it {is_expected.to respond_to(:host_id)}
     it {is_expected.to respond_to(:event_id)}
-    it {is_expected.to respond_to(:location_id)}
     it {is_expected.to respond_to(:start_time)}
     it {is_expected.to respond_to(:end_time)}
     it {is_expected.to respond_to(:reservation_min)}
