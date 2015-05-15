@@ -35,7 +35,7 @@ module API
 		    end
 
 		    desc "Returns a list of all appointments for a given attendee"
-		    get do ":attendee_id"
+		    get ":attendee_id" do
 		    	content_type "application/json"
 		    	@appointments = Appointment.where(attendee: params[:attendee_id])
 		    	return @appointments.as_json
