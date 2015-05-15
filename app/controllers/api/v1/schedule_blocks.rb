@@ -63,10 +63,9 @@ module API
 
 		    desc "Creates a new Appointment with the given parameters for a given Schedule Block"
 		    post ":id/appointments" do
-		      sanitized_params = appointment_params(params)
 		      content_type "application/json"
 		      @schedule_block = ScheduleBlock.find(params[:id])
-		      @appointment = @schedule_block.appointments.create(sanitized_params)
+		      @appointment = @schedule_block.appointments.create(params)
 		      return @appointment.as_json
 		    end
 
